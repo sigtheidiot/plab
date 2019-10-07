@@ -43,11 +43,24 @@ class KPCAgent():
         """Checks if the password entered matches registered password.
         Stores the result ('Y' or 'N') in the override signal.
         init correct light sequence"""
+        if self.cum_pc == self.passcode:
+            self.ledboard.changed_password_success()
+            return 'Y'
+        self.ledboard.changed_password_fail()
+        return 'N'
 
     def validate_passcode_change(self):
-        """Checks that the new password is legal.
+        """Checks that the new password is legal (>= 4 digits).
         If so, writes the new password to file.
         init correct light sequence."""
+        if len(self.cum_pc) >= 4 and self.cum_pc.isdigit():
+            file = open(self.filename, "w+")
+            file.write(self.cum_pc)
+            file.close()
+            self.passcode = self.cum_pc
+            self.ledboard.changed_password_success()
+        else:
+            self.ledboard.changed_password_fail()
 
     def save_digit(self, digit):
         """Adds the digit to the cumulative password"""
@@ -55,12 +68,16 @@ class KPCAgent():
 
     def light_one_led(self):
         """Calls Ledboard to turn LED #self.lid be turned on for self.ldur sek"""
+        self.ledboard.light_led(self.lid, self.ldur)
 
     def flash_leds(self):
         """Calls ledboard to flash all LEDs"""
+        self.ledboard.flash_all_leds()
 
     def twinkle_leds(self):
         """Calls ledboard to twinkle all LEDs"""
+        self.ledboard.twinkle_all_leds()
 
     def exit_action(self):
         """Calls ledboard to init 'power down' light sequence"""
+        self.ledboard.power_down()

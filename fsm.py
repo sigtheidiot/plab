@@ -32,7 +32,7 @@ class FSM:
 
     def apply_rule(self):
         """check if conditions of rule are met"""
-        return
+        return rule.state1 == self.state and rule.signal == self.get_next_signal()
 
     def fire_rule(self, rule):
         """"sets next_state equal head-state of the rule that is fired and calls the agent-method given by the rule"""
@@ -52,5 +52,7 @@ def call_agent_method(rule):
     action = rule.action
     if action == 'verify_login':
         kpc_agent.verify_login()
-    elif action ==
+    elif action == 'init_passcode_entry':
+        kpc_agent.init_passcode_entry()
+    elif action
 

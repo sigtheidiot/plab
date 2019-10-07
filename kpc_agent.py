@@ -1,10 +1,19 @@
 """The controller."""
+from ledboard import *
+from keypad import *
+from fsm import *
 
 
 class KPCAgent():
     """Coordinates between the other classes, verifies and changes passwords."""
     def __init__(self):
-        return
+        self.ledboard = LedBoard()
+        self.keypad = KeyPad()
+        self.fsm = FSM(self)
+        self.file =
+        self.override = None
+        self.lid = None
+        self.ldur = None
 
     def init_passcode_entry(self):
         """Clears the passcode-buffer and init 'power up' lights.

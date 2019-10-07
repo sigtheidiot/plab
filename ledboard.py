@@ -70,24 +70,39 @@ class Ledboard:
             self.turn_off_all_leds()
             sleep(0.2)
         self.turn_off_all_leds()
-        return
 
     def power_up(self):
         """Turn on the power up sequence"""
+        order = [0,2,1,4,3,5]
+        for index in order:
+            self.turn_on_led(index)
+            sleep(0.5)
+        self.turn_off_all_leds()
 
-        return
 
     def power_down(self):
         """Turn on the power down sequence"""
-        return
+        order = [5,3,4,1,2,0]
+        for index in order:
+            self.turn_on_led(index)
+            sleep(0.5)
+        self.turn_off_all_leds()
 
     def changed_password_fail(self):
         """Turn on the login fail sequence"""
-        return
+        order = [4,1,3,2,5,0]
+        for index in order:
+            self.turn_on_led(index)
+            sleep(0.5)
+        self.turn_off_all_leds()
 
     def changed_password_success(self):
         """Turn on the changed password success sequence"""
-        return
+        order = [0,5,2,3,1,4]
+        for index in order:
+            self.turn_on_led(index)
+        self.turn_off_all_leds()
+        
 
 
 

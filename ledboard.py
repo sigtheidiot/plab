@@ -1,8 +1,8 @@
 """file for the ledboard class"""
-from time import sleep
+from time import sleep, time
 import RPi.GPIO as GPIO
 
-class ledboard:
+class Ledboard:
     """Class for ledboard"""
 
     pins = [18, 23, 24]
@@ -47,16 +47,34 @@ class ledboard:
         sleep(time)
         self.turn_off_all_leds()
 
-    def flash_all_leds(self, time):
-        """Flash all 6 LEDs on and off for a specified number of seconds, defined by the time argument"""
+    def flash_all_leds(self, sec):
+        """Flash all 6 LEDs on and off for a specified number of seconds, defined by the sec argument"""
+        endtime = time() + sec
+        while time() < endtime:
+            for index in range(6):
+                self.turn_on_led(index)
+                sleep(0.01)
+            self.turn_off_all_leds()
+            sleep(0.2)
+        self.turn_off_all_leds()
 
 
-    def twinkle_all_leds(self, time):
-        """Turn all LEDs on and off in sequence for a specified number of seconds, defined by the time argument"""
+
+    def twinkle_all_leds(self, sec):
+        """Turn all LEDs on and off in sequence for a specified number of seconds, defined by the sec argument"""
+        endtime = time() + sec
+        while time() < endtime:
+            for index in range(6):
+                self.turn_on_led(index)
+                sleep(0.5)
+            self.turn_off_all_leds()
+            sleep(0.2)
+        self.turn_off_all_leds()
         return
 
     def power_up(self):
         """Turn on the power up sequence"""
+
         return
 
     def power_down(self):

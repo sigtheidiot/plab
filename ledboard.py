@@ -4,40 +4,40 @@ import RPi.GPIO as GPIO
 
 class ledboard:
     """Class for ledboard"""
+
     pins = [18, 23, 24]
     pin_led_states = [
         [1, 0, -1],
         [0, 1, -1],
-        [-1, 1, 0],
-        [-1, 0, 1],
         [1, -1, 0],
-        [0, -1, 1]
-    ]
-
+        [0, -1, 1],
+        [-1, 1, 0],
+        [-1, 0, 1]]
 
     def __init__(self):
         """Set the proper mode """
         GPIO.setmode(GPIO.BCM)
+
         return
 
     def set_pin(self, pin_index, pin_state):
         """Sets the pin"""
         if pin_state == -1:
-            GPIO.setup(pins[pin_index], GPIO.IN)
+            GPIO.setup(self.pins[pin_index], GPIO.IN)
         else:
-            GPIO.setup(pins[pin_index], GPIO.OUT)
-            GPIO.output(pins[pin_index], pin_state)
+            GPIO.setup(self.pins[pin_index], GPIO.OUT)
+            GPIO.output(self.pins[pin_index], pin_state)
 
     def turn_on_led(self, led_nr):
         """Turns on spesific led by calling set_pin"""
-        for pin_index, pin_state in enumerate(pin_led_states[led_nr]):
+        for pin_index, pin_state in enumerate(self.pin_led_states[led_nr]):
             self.set_pin(pin_index, pin_state)
 
     def turn_off_all_leds(self):
         """Turns off all leds"""
-        set_pin(0, -1)
-        set_pin(1, -1)
-        set_pin(2, -1)
+        self.set_pin(0, -1)
+        self.set_pin(1, -1)
+        self.set_pin(2, -1)
 
 
     def light_led(self, led, time):

@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b99d8a55-a85d-447e-9973-0e1553d62bf9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/kpcagent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/plab.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ledboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/ledboard.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +36,9 @@
   <component name="ProjectId" id="1RrrSzgvKmaMcy7ekZTeRTWbgEc" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -50,12 +58,13 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1f03eda7-ad10-4215-a213-caec9864b585" name="Default Changelist" comment="" />
+      <changelist id="b99d8a55-a85d-447e-9973-0e1553d62bf9" name="Default Changelist" comment="" />
       <created>1570436060527</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1570436060527</updated>
       <workItem from="1570436064363" duration="2284000" />
+      <workItem from="1570447869776" duration="692000" />
     </task>
     <servers />
   </component>

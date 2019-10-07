@@ -1,27 +1,43 @@
 """The controller."""
-from ledboard import *
-from keypad import *
-from fsm import *
+import ledboard
+import keypad
+import fsm
 
 
 class KPCAgent():
     """Coordinates between the other classes, verifies and changes passwords."""
     def __init__(self):
-        self.ledboard = LedBoard()
-        self.keypad = KeyPad()
-        self.fsm = FSM(self)
-        self.file =
+        self.ledboard = ledboard.Ledboard()
+        self.keypad = keypad.KeyPad()
+        self.fsm = fsm.FSM(self)
+        self.filename = "password.txt"
+        self.passcode = None
+        self.cum_pc = ""
         self.override = None
         self.lid = None
         self.ldur = None
+        # Tries to read from the password file
+        try:
+            file = open(self.filename, "r")
+            self.passcode = file.readlines()[-1]
+            file.close()
+        except FileNotFoundError:
+            "nothing"
 
     def init_passcode_entry(self):
         """Clears the passcode-buffer and init 'power up' lights.
         Used when user first presses the keypad"""
+        self.cum_pc = ""
+        self.ledboard.power_up()
 
     def get_next_signal(self):
         """returns override signal if it's not blank.
-        Otherwise returns the next signal from the keypad(?)"""
+        Otherwise returns the next signal from the keypad"""
+        if self.override:
+            temp = self.override
+            self.override = None
+            return temp
+        return self.keypad.get_next_signal()
 
     def verify_login(self):
         """Checks if the password entered matches registered password.
@@ -32,6 +48,10 @@ class KPCAgent():
         """Checks that the new password is legal.
         If so, writes the new password to file.
         init correct light sequence."""
+
+    def save_digit(self, digit):
+        """Adds the digit to the cumulative password"""
+        self.cum_pc += digit
 
     def light_one_led(self):
         """Calls Ledboard to turn LED #self.lid be turned on for self.ldur sek"""

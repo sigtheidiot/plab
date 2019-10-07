@@ -2,6 +2,7 @@
 import ledboard
 import keypad
 import fsm
+import rule
 
 
 class KPCAgent():
@@ -13,9 +14,12 @@ class KPCAgent():
         self.filename = "password.txt"
         self.passcode = None
         self.cum_pc = ""
+        self.last_signal = ""
         self.override = None
         self.lid = None
         self.ldur = None
+
+        self.add_rules()
         # Tries to read from the password file
         try:
             file = open(self.filename, "r")
@@ -23,6 +27,17 @@ class KPCAgent():
             file.close()
         except FileNotFoundError:
             "nothing"
+
+    def add_rules(self):
+        """Adds rules to the fsm in the correct order"""
+        self.fsm.add_rule(rule.Rule(fsm._init_state, fsm._read_state, rule.any_signal, self.init_passcode_entry))
+        self.fsm.add_rule(rule.Rule(fsm._read_state, fsm._read_state, rule.signal_is_digit, self.save_digit))
+        self.fsm.add_rule(rule.Rule(fsm._read_state, fsm._verify_state, rule.is_astrix, self.verify_login))
+        self.fsm.add_rule(rule.Rule(fsm._read_state, fsm._init_state, rule.any_signal, self.init_passcode_entry))
+        self.fsm.add_rule(rule.Rule(fsm._verify_state, fsm._active_state, rule.is_yes, self.empty_method))
+        self.fsm.add_rule(rule.Rule(fsm._verify_state, fsm._init_state, rule.any_signal, self.init_passcode_entry))
+        #Write rest of rules in active state
+
 
     def init_passcode_entry(self):
         """Clears the passcode-buffer and init 'power up' lights.
@@ -37,7 +52,8 @@ class KPCAgent():
             temp = self.override
             self.override = None
             return temp
-        return self.keypad.get_next_signal()
+        self.last_signal = self.keypad.get_next_signal()
+        return self.last_signal
 
     def verify_login(self):
         """Checks if the password entered matches registered password.
@@ -62,9 +78,9 @@ class KPCAgent():
         else:
             self.ledboard.changed_password_fail()
 
-    def save_digit(self, digit):
+    def save_digit(self):
         """Adds the digit to the cumulative password"""
-        self.cum_pc += digit
+        self.cum_pc += self.last_signal
 
     def light_one_led(self):
         """Calls Ledboard to turn LED #self.lid be turned on for self.ldur sek"""
@@ -81,3 +97,6 @@ class KPCAgent():
     def exit_action(self):
         """Calls ledboard to init 'power down' light sequence"""
         self.ledboard.power_down()
+
+    def empty_method(self):
+        """Dummy method"""

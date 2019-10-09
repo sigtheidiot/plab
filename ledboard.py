@@ -2,6 +2,7 @@
 from time import sleep, time
 import RPi.GPIO as GPIO
 
+
 class Ledboard:
     """Class for ledboard"""
 
@@ -17,8 +18,6 @@ class Ledboard:
     def __init__(self):
         """Set the proper mode """
         GPIO.setmode(GPIO.BCM)
-
-        return
 
     def set_pin(self, pin_index, pin_state):
         """Sets the pin"""
@@ -39,16 +38,16 @@ class Ledboard:
         self.set_pin(1, -1)
         self.set_pin(2, -1)
 
-
-    def light_led(self, led, time):
+    def light_led(self, led, sec):
         """Turns on the led by calling the turn_on_led function,
         then calls the sleep function with paramater time. Then turns off all leds"""
         self.turn_on_led(led)
-        sleep(time)
+        sleep(sec)
         self.turn_off_all_leds()
 
     def flash_all_leds(self, sec):
-        """Flash all 6 LEDs on and off for a specified number of seconds, defined by the sec argument"""
+        """Flash all 6 LEDs on and off for a specified number of seconds,
+        defined by the sec argument"""
         endtime = time() + sec
         while time() < endtime:
             for index in range(6):
@@ -58,10 +57,9 @@ class Ledboard:
             sleep(0.2)
         self.turn_off_all_leds()
 
-
-
     def twinkle_all_leds(self, sec):
-        """Turn all LEDs on and off in sequence for a specified number of seconds, defined by the sec argument"""
+        """Turn all LEDs on and off in sequence for a specified
+        number of seconds, defined by the sec argument"""
         endtime = time() + sec
         while time() < endtime:
             for index in range(6):
@@ -73,16 +71,15 @@ class Ledboard:
 
     def power_up(self):
         """Turn on the power up sequence"""
-        order = [0,2,1,4,3,5]
+        order = [0, 2, 1, 4, 3, 5]
         for index in order:
             self.turn_on_led(index)
             sleep(0.5)
         self.turn_off_all_leds()
 
-
     def power_down(self):
         """Turn on the power down sequence"""
-        order = [5,3,4,1,2,0]
+        order = [5, 3, 4, 1, 2, 0]
         for index in order:
             self.turn_on_led(index)
             sleep(0.5)
@@ -90,7 +87,7 @@ class Ledboard:
 
     def changed_password_fail(self):
         """Turn on the login fail sequence"""
-        order = [4,1,3,2,5,0]
+        order = [4, 1, 3, 2, 5, 0]
         for index in order:
             self.turn_on_led(index)
             sleep(0.5)
@@ -98,14 +95,7 @@ class Ledboard:
 
     def changed_password_success(self):
         """Turn on the changed password success sequence"""
-        order = [0,5,2,3,1,4]
+        order = [0, 5, 2, 3, 1, 4]
         for index in order:
             self.turn_on_led(index)
         self.turn_off_all_leds()
-        
-
-
-
-
-
-

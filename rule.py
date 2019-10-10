@@ -3,12 +3,12 @@
 
 def is_digit(signal):
     """function for checking if the signal is a digit (0-9)"""
-    return 48 <= ord(signal) <= 57
+    return 48 <= ord(str(signal)) <= 57
 
 
 def is_digit_0_5(signal):
     """function for checking if the signal is a digit (0-5)"""
-    return 48 <= ord(signal) <= 53
+    return 48 <= ord(str(signal)) <= 53
 
 
 def any_signal(signal):

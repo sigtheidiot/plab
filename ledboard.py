@@ -6,7 +6,7 @@ import RPi.GPIO as GPIO
 class Ledboard:
     """Class for ledboard"""
 
-    pins = [18, 23, 24]
+    pins = [26, 19, 13]
     pin_led_states = [
         [1, 0, -1],
         [0, 1, -1],
@@ -98,4 +98,5 @@ class Ledboard:
         order = [0, 5, 2, 3, 1, 4]
         for index in order:
             self.turn_on_led(index)
+            sleep(0.5)
         self.turn_off_all_leds()

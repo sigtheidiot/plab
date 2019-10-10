@@ -1,16 +1,16 @@
 """Class for making an FSM object with associated methods"""
 import kpc_agent
 
-_INIT = 's_init'
-_READ = 's_read'
-_VERIFY = 's_verify'
-_ACTIVE = 's_active'
-_READ_2 = 's_read2'
-_READ_3 = 's_read3'
-_LED = 's_led'
-_TIME = 's_time'
-_LOGOUT = 's_logout'
-_DONE = 's_done'
+INIT = 's_init'
+READ = 's_read'
+VERIFY = 's_verify'
+ACTIVE = 's_active'
+READ_2 = 's_read2'
+READ_3 = 's_read3'
+LED = 's_led'
+TIME = 's_time'
+LOGOUT = 's_logout'
+DONE = 's_done'
 
 
 class FSM:
@@ -18,7 +18,7 @@ class FSM:
     def __init__(self, agent):
         self._agent = agent
         self._rule_list = []
-        self.state = _INIT
+        self.state = INIT
 
     def add_rule(self, this_rule):
         """add a new rule-object to the end of rule_list"""
@@ -48,7 +48,7 @@ class FSM:
     def main_loop(self):
         """begins in initial state and call get_next_signal and
          run_rules until FSM enters final state"""
-        self.state = _INIT
-        while self.state != _DONE:
+        self.state = INIT
+        while self.state != DONE:
             # self.get_next_signal()  run_rules() calls get_next_signal
             self.run_rules()

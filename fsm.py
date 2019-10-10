@@ -30,7 +30,6 @@ class FSM:
 
     def run_rules(self, next_signal):
         """apply each rule in rule_list until one is fired"""
-        next_signal = self.get_next_signal()
         for this_rule in self._rule_list:
             if self.apply_rule(this_rule, next_signal):  # if rules conditions is passed
                 self.fire_rule(this_rule)  # rule is fired

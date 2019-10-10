@@ -42,7 +42,7 @@ class KeyPad:
         Repeatedly polls the keypad until a key is pressed.
         Returns an int or one of the chars '*' or '#'."""
         key = None
-        while not key:
+        while key == None:
             key = self.do_polling()
         print(key)
         return key

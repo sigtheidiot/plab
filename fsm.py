@@ -1,24 +1,28 @@
 """Class for making an FSM object with associated methods"""
-import rule
 import kpc_agent
 
-_init_state = 's_init'
-_read_state = 's_read'
-_verify_state = 's_verify'
-_active_state = 's_active'
-_led_state = 's_led'
-_done_state = 's_done'
+_INIT = 's_init'
+_READ = 's_read'
+_VERIFY = 's_verify'
+_ACTIVE = 's_active'
+_READ_2 = 's_read2'
+_READ_3 = 's_read3'
+_LED = 's_led'
+_TIME = 's_time'
+_LOGOUT = 's_logout'
+_DONE = 's_done'
 
 
 class FSM:
-    def __init__(self, kpc_agent):
-        self._agent = kpc_agent
+    """Class for making Final-state-machine"""
+    def __init__(self, agent):
+        self._agent = agent
         self._rule_list = []
-        self.state = _init_state
+        self.state = _INIT
 
-    def add_rule(self, rule):
+    def add_rule(self, this_rule):
         """add a new rule-object to the end of rule_list"""
-        self._rule_list.add(rule)
+        self._rule_list.append(this_rule)
 
     def get_next_signal(self):
         """gets next_signal from agent"""
@@ -35,17 +39,16 @@ class FSM:
         """check if conditions of rule are met"""
         return this_rule.state1 == self.state and this_rule.signal(next_signal)
 
-
-    def fire_rule(self, rule):
-        """"sets next_state equal head-state of the rule that is fired and calls the agent-method given by the rule"""
-        self.state = rule.state2
-        rule.action()
-
+    def fire_rule(self, this_rule):
+        """"sets next_state equal head-state of the rule that is
+         fired and calls the agent-method given by the rule"""
+        self.state = this_rule.state2
+        this_rule.action()
 
     def main_loop(self):
-        """begins in initial state and call get_next_signal og run_rules until FSM enters final state"""
-
-        self.state = _init_state
-        while self.state != _done_state:
-            self.get_next_signal()
+        """begins in initial state and call get_next_signal and
+         run_rules until FSM enters final state"""
+        self.state = _INIT
+        while self.state != _DONE:
+            # self.get_next_signal()  run_rules() calls get_next_signal
             self.run_rules()

@@ -41,7 +41,7 @@ class KeyPad:
         """Interfaces with the controller.
         Repeatedly polls the keypad until a key is pressed.
         Returns an int or one of the chars '*' or '#'."""
-        key = self.do_polling()
+        key = None
         while not key:
             key = self.do_polling()
         return key

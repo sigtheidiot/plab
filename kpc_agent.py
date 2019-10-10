@@ -52,12 +52,12 @@ class KPCAgent:
                 fsm.VERIFY,
                 rule.is_astrix,
                 self.verify_login))
-        self.fsm.add_rule(
-            rule.Rule(
-                fsm.READ,
-                fsm.INIT,
-                rule.any_signal,
-                self.init_passcode_entry))
+        #self.fsm.add_rule(
+         #   rule.Rule(
+          #      fsm.READ,
+           #     fsm.INIT,
+            #    rule.any_signal,
+             #   self.init_passcode_entry))
         self.fsm.add_rule(
             rule.Rule(
                 fsm.VERIFY,

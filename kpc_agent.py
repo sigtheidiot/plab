@@ -212,9 +212,9 @@ class KPCAgent:
         init correct light sequence"""
         if self.cum_pc == self.passcode:
             self.ledboard.changed_password_success()
-            return 'Y'
+            self.override = 'Y'
         self.ledboard.changed_password_fail()
-        return 'N'
+        self.override = 'N'
 
     def validate_passcode_change(self):
         """Checks that the new password is legal (>= 4 digits).

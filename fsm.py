@@ -28,7 +28,7 @@ class FSM:
         """gets next_signal from agent"""
         return self.agent.get_next_signal()
 
-    def run_rules(self):
+    def run_rules(self, next_signal):
         """apply each rule in rule_list until one is fired"""
         next_signal = self.get_next_signal()
         for this_rule in self._rule_list:
@@ -51,6 +51,6 @@ class FSM:
          run_rules until FSM enters final state"""
         print(self.state)
         while self.state != DONE:
-            # self.get_next_signal()  run_rules() calls get_next_signal
-            self.run_rules()
+            next_signal = self.get_next_signal()  # run_rules() calls get_next_signal
+            self.run_rules(next_signal)
             print(self.state)

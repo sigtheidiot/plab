@@ -44,4 +44,5 @@ class KeyPad:
         key = None
         while not key:
             key = self.do_polling()
+        print(key)
         return key

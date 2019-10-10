@@ -9,7 +9,9 @@ class KPCAgent:
     """Coordinates between the other classes, verifies and changes passwords."""
 
     def __init__(self):
+        print("Hello world!")
         self.ledboard = ledboard.Ledboard()
+        print("Bye world")
         self.keypad = keypad.KeyPad()
         self.fsm = fsm.FSM(self)
         self.filename = "password.txt"

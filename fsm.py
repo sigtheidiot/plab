@@ -16,7 +16,7 @@ DONE = 's_done'
 class FSM:
     """Class for making Final-state-machine"""
     def __init__(self, agent):
-        self._agent = agent
+        self.agent = agent
         self._rule_list = []
         self.state = INIT
 
@@ -26,7 +26,7 @@ class FSM:
 
     def get_next_signal(self):
         """gets next_signal from agent"""
-        return kpc_agent.get_next_signal()
+        return self.agent.get_next_signal()
 
     def run_rules(self):
         """apply each rule in rule_list until one is fired"""

@@ -177,7 +177,7 @@ class KPCAgent:
 
     def save_ldur(self):
         """update ldur with signal from keypad"""
-        self.ldur += self.last_signal
+        self.ldur += str(self.last_signal)
 
     def init_passcode_entry(self):
         """"Clears the passcode-buffer and init 'power up' lights.
@@ -226,11 +226,11 @@ class KPCAgent:
 
     def save_digit(self):
         """Adds the digit to the cumulative password"""
-        self.cum_pc += "" + self.last_signal
+        self.cum_pc += str(self.last_signal)
 
     def light_one_led(self):
         """Calls Ledboard to turn LED #self.lid be turned on for self.ldur sek"""
-        self.ledboard.light_led(self.lid, self.ldur)
+        self.ledboard.light_led(self.lid, int(self.ldur))
         self.lid = 0
         self.ldur = ""
 

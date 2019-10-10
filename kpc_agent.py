@@ -226,13 +226,13 @@ class KPCAgent:
 
     def save_digit(self):
         """Adds the digit to the cumulative password"""
-        self.cum_pc += self.last_signal
+        self.cum_pc += "" + self.last_signal
 
     def light_one_led(self):
         """Calls Ledboard to turn LED #self.lid be turned on for self.ldur sek"""
         self.ledboard.light_led(self.lid, self.ldur)
         self.lid = 0
-        self.ldur = 0
+        self.ldur = ""
 
     def flash_leds(self):
         """Calls ledboard to flash all LEDs for 1 sek"""

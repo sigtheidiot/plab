@@ -31,7 +31,7 @@ class KPCAgent():
     def add_rules(self):
         """Adds rules to the fsm in the correct order"""
         self.fsm.add_rule(rule.Rule(fsm._init_state, fsm._read_state, rule.any_signal, self.init_passcode_entry))
-        self.fsm.add_rule(rule.Rule(fsm._read_state, fsm._read_state, rule.signal_is_digit, self.save_digit))
+        self.fsm.add_rule(rule.Rule(fsm._read_state, fsm._read_state, rule.is_digit, self.save_digit))
         self.fsm.add_rule(rule.Rule(fsm._read_state, fsm._verify_state, rule.is_astrix, self.verify_login))
         self.fsm.add_rule(rule.Rule(fsm._read_state, fsm._init_state, rule.any_signal, self.init_passcode_entry))
         self.fsm.add_rule(rule.Rule(fsm._verify_state, fsm._active_state, rule.is_yes, self.empty_method))

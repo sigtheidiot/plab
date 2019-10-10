@@ -1,12 +1,12 @@
 """Class for making a rule object that represents an arc along with head- and tail-node"""
 
 
-def signal_is_digit(signal):
+def is_digit(signal):
     """function for checking if the signal is a digit (0-9)"""
     return 48 <= ord(signal) <= 57
 
 
-def signal_is_digit_0_5(signal):
+def is_digit_0_5(signal):
     """function for checking if the signal is a digit (0-5)"""
     return 48 <= ord(signal) <= 53
 
@@ -39,3 +39,4 @@ class Rule:
         self.state2 = state2  # new state if rule fires
         self.signal = signal  # triggering signal
         self.action = action  # action performed if rule fires
+

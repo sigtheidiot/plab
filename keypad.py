@@ -31,6 +31,7 @@ class KeyPad:
                 while GPIO.input(col_pin) == GPIO.HIGH:
                     i += 1
                     if i >= 20:
+                        GPIO.output(row_pin, GPIO.LOW)
                         return self.symbols[self.row_pins.index(row_pin)][self.col_pins.index(
                             col_pin)]
                     time.sleep(0.01)

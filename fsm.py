@@ -52,3 +52,4 @@ class FSM:
         while self.state != DONE:
             # self.get_next_signal()  run_rules() calls get_next_signal
             self.run_rules()
+            print(self.state)

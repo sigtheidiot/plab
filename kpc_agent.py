@@ -3,6 +3,7 @@ import ledboard
 import keypad
 import fsm
 import rule
+import time
 
 
 class KPCAgent:
@@ -10,6 +11,7 @@ class KPCAgent:
 
     def __init__(self):
         print("Hello world!")
+        time.sleep(1)
         self.ledboard = ledboard.Ledboard()
         print("Bye world")
         self.keypad = keypad.KeyPad()

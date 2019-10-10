@@ -68,7 +68,7 @@ class KPCAgent:
                 fsm.VERIFY,
                 fsm.ACTIVE,
                 rule.is_yes,
-                self.twinkle_leds()))
+                self.twinkle_leds))
         self.fsm.add_rule(
             rule.Rule(
                 fsm.VERIFY,

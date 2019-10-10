@@ -62,7 +62,7 @@ class Ledboard:
         number of seconds, defined by the sec argument"""
         endtime = time() + sec
         while time() < endtime:
-            for index in range(6):
+            for index in range(3):
                 self.turn_on_led(index)
                 sleep(0.5)
             self.turn_off_all_leds()
@@ -71,7 +71,7 @@ class Ledboard:
 
     def power_up(self):
         """Turn on the power up sequence"""
-        order = [0, 2, 1, 4, 3, 5]
+        order = [0, 2]
         for index in order:
             self.turn_on_led(index)
             sleep(0.5)

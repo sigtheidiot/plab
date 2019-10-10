@@ -34,6 +34,7 @@ class KPCAgent:
         except FileNotFoundError:
             pass
         finally:
+            print("Init_password" + self.passcode)
             self.fsm.main_loop()
 
     def add_rules(self):
@@ -210,6 +211,7 @@ class KPCAgent:
         """Checks if the password entered matches registered password.
         Stores the result ('Y' or 'N') in the override signal.
         init correct light sequence"""
+        print("Password: " + self.passcode + " Attempt: " + self.cum_pc)
         if self.cum_pc == self.passcode:
             self.ledboard.changed_password_success()
             self.override = 'Y'

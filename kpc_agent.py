@@ -198,9 +198,11 @@ class KPCAgent:
         """returns override signal if it's not blank.
         Otherwise returns the next signal from the keypad"""
         if self.override:
+            print("override")
             temp = self.override
             self.override = None
             return temp
+        print("reached kpc_agent")
         self.last_signal = self.keypad.get_next_signal()
         return self.last_signal
 

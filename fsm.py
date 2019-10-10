@@ -54,4 +54,4 @@ class FSM:
             next_signal = self.get_next_signal()  # run_rules() calls get_next_signal
             print("next signal is: " + str(next_signal))
             self.run_rules(next_signal)
-            print(self.state)
+            print("state: " + self.state)

@@ -34,6 +34,7 @@ class FSM:
         for this_rule in self._rule_list:
             if self.apply_rule(this_rule, next_signal):  # if rules conditions is passed
                 self.fire_rule(this_rule)  # rule is fired
+                break
 
     def apply_rule(self, this_rule, next_signal):
         """check if conditions of rule are met"""

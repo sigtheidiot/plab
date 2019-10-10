@@ -18,7 +18,7 @@ class Ledboard:
     def __init__(self):
         """Set the proper mode """
         print('LED')
-        #GPIO.setmode(GPIO.BCM)
+        GPIO.setmode(GPIO.BCM)
 
     def set_pin(self, pin_index, pin_state):
         """Sets the pin"""

@@ -36,11 +36,24 @@ class KPCAgent():
         self.fsm.add_rule(rule.Rule(fsm._read_state, fsm._init_state, rule.any_signal, self.init_passcode_entry))
         self.fsm.add_rule(rule.Rule(fsm._verify_state, fsm._active_state, rule.is_yes, self.empty_method))
         self.fsm.add_rule(rule.Rule(fsm._verify_state, fsm._init_state, rule.any_signal, self.init_passcode_entry))
-        #Write rest of rules in active state
-
+        self.fsm.add_rule(rule.Rule(fsm._ACTIVE, fsm._READ_2, rule.is_astrix, self.reset_passcode_entry))  # enter R-2
+        self.fsm.add_rule(rule.Rule(fsm._READ_2, fsm._READ_2, rule.is_digit, self.save_digit))  # enters new password
+        self.fsm.add_rule(rule.Rule(fsm._READ_2, fsm._READ_3, rule.is_astrix, self.cache_passcode))  # save first trial
+        self.fsm.add_rule(rule.Rule(fsm._READ_2, fsm._ACTIVE, rule.any_signal, self.refresh_agent))  # wrong entry
+        self.fsm.add_rule(rule.Rule(fsm._READ_3, fsm._READ_3, rule.is_digit, self.save_digit))  # enters new password
+        self.fsm.add_rule(rule.Rule(fsm._READ_3, fsm._ACTIVE, rule.is_astrix, self.validate_passcode_change))
+        self.fsm.add_rule(rule.Rule(fsm._READ_3, fsm._ACTIVE, rule.any_signal, self.refresh_agent))  # wrong entry
+        self.fsm.add_rule(rule.Rule(fsm._ACTIVE, fsm._LED, rule.is_digit_0_5, self.choose_led))  # choose led 0-5
+        self.fsm.add_rule(rule.Rule(fsm._LED, fsm._TIME, rule.is_astrix, self.empty_method))  # enters time-state
+        self.fsm.add_rule(rule.Rule(fsm._LED, fsm._ACTIVE, rule.any_signal, self.refresh_agent))  # wrong entry
+        self.fsm.add_rule(rule.Rule(fsm._TIME, fsm._TIME, rule.is_digit, self.save_ldur))  # enters duration of LED-high
+        self.fsm.add_rule(rule.Rule(fsm._TIME, fsm._ACTIVE, rule.is_astrix, self.light_one_led))  # light LED
+        self.fsm.add_rule(rule.Rule(fsm._TIME, fsm._ACTIVE, rule.any_signal, self.refresh_agent))  # wrong entry
+        self.fsm.add_rule(rule.Rule(fsm._ACTIVE, fsm._LOGOUT, rule.is_hashtag, self.empty_method))  # begin logout
+        self.fsm.add_rule(rule.Rule(fsm._LOGOUT, fsm._DONE, rule.is_hashtag, self.exit_action))  # confirm logout
 
     def init_passcode_entry(self):
-        """Clears the passcode-buffer and init 'power up' lights.
+        """"Clears the passcode-buffer and init 'power up' lights.
         Used when user first presses the keypad"""
         self.cum_pc = ""
         self.ledboard.power_up()

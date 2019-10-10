@@ -215,8 +215,9 @@ class KPCAgent:
         if self.cum_pc == self.passcode:
             self.ledboard.changed_password_success()
             self.override = 'Y'
-        self.ledboard.changed_password_fail()
-        self.override = 'N'
+        else:
+            self.ledboard.changed_password_fail()
+            self.override = 'N'
 
     def validate_passcode_change(self):
         """Checks that the new password is legal (>= 4 digits).

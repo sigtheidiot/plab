@@ -1,5 +1,5 @@
 """Class for making an FSM object with associated methods"""
-import kpc_agent
+import time
 
 INIT = 's_init'
 READ = 's_read'
@@ -51,6 +51,7 @@ class FSM:
          run_rules until FSM enters final state"""
         print("init state: " + self.state)
         while self.state != DONE:
+            time.sleep(0.7)
             next_signal = self.get_next_signal()  # run_rules() calls get_next_signal
             print("next signal is: " + str(next_signal))
             self.run_rules(next_signal)

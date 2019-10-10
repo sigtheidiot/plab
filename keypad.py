@@ -45,6 +45,6 @@ class KeyPad:
         key = None
         while key == None:
             key = self.do_polling()
-        print(key)
+        print("key: " + str(key))
         print("reached keypad after loop")
         return key

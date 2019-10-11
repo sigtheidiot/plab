@@ -48,7 +48,7 @@ class FSM:
     def main_loop(self):
         """begins in initial state and call get_next_signal and
          run_rules until FSM enters final state"""
-        while self.state != DONE:
+        while True:
             time.sleep(0.7)
             next_signal = self.get_next_signal()  # run_rules() calls get_next_signal
             self.run_rules(next_signal)

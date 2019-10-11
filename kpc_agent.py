@@ -163,6 +163,12 @@ class KPCAgent:
                 fsm.DONE,
                 rule.is_hashtag,
                 self.exit_action))  # confirm logout
+        self.fsm.add_rule(
+            rule.Rule(
+                fsm.DONE,
+                fsm.READ,
+                rule.any_signal,
+                self.init_passcode_entry))  # confirm logout
 
     def cache_passcode(self):
         """saves passcode after first trial"""

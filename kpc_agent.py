@@ -32,7 +32,7 @@ class KPCAgent:
         except FileNotFoundError:
             pass
         finally:
-            print("Init_password" + self.passcode)
+            print("Init_password: " + self.passcode)
             self.fsm.main_loop()
 
     def add_rules(self):

@@ -26,7 +26,6 @@ class FSM:
 
     def get_next_signal(self):
         """gets next_signal from agent"""
-        print("reached fsm_get_signal")
         return self.agent.get_next_signal()
 
     def run_rules(self, next_signal):

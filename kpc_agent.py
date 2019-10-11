@@ -209,10 +209,8 @@ class KPCAgent:
         init correct light sequence"""
         print("Password: " + self.passcode + " Attempt: " + self.cum_pc)
         if self.cum_pc == self.passcode:
-            self.ledboard.changed_password_success()
             self.override = 'Y'
         else:
-            self.ledboard.changed_password_fail()
             self.override = 'N'
 
     def validate_passcode_change(self):

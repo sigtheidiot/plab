@@ -10,10 +10,8 @@ class KPCAgent:
     """Coordinates between the other classes, verifies and changes passwords."""
 
     def __init__(self):
-        print("Hello world!")
         time.sleep(1)
         self.ledboard = ledboard.Ledboard()
-        print("Bye world")
         self.keypad = keypad.KeyPad()
         self.fsm = fsm.FSM(self)
         self.filename = "password.txt"
@@ -199,11 +197,9 @@ class KPCAgent:
         """returns override signal if it's not blank.
         Otherwise returns the next signal from the keypad"""
         if self.override:
-            print("override")
             temp = self.override
             self.override = None
             return temp
-        print("reached kpc_agent")
         self.last_signal = self.keypad.get_next_signal()
         return self.last_signal
 

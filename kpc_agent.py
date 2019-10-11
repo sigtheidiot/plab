@@ -70,7 +70,7 @@ class KPCAgent:
         self.fsm.add_rule(
             rule.Rule(
                 fsm.VERIFY,
-                fsm.INIT,
+                fsm.READ,
                 rule.any_signal,
                 self.failed_login))
         self.fsm.add_rule(
